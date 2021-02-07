@@ -16,3 +16,13 @@
 $router->get('/', function () use ($router) {
     return $router->app->version();
 });
+
+$router->group(['prefix' => 'drones'], function () use ($router) {
+    $router->get('/', 'DroneController@List');
+    $router->post('/', 'DroneController@Insert');
+    $router->put('/{id}', 'DroneController@Update');
+    $router->delete('/{id}', 'DroneController@Delete');
+    $router->get('/paginar/{limit}', 'DroneController@Paginate');
+    $router->get('/sort/{field}/{order}', 'DroneController@Sort');
+    $router->get('/filter/{name}/{status}', 'DroneController@Filter');
+});
